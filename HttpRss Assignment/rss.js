@@ -1,4 +1,6 @@
 var xmlhttp;
+var clickObj=document.getElementById("buttonToShow");
+
 function RSS(rssUrl){
 
 if (window.XMLHttpRequest)
@@ -14,7 +16,7 @@ xmlhttp.onreadystatechange=function()
 
 if (xmlhttp.readyState==4 && xmlhttp.status==200)
 {
-document.getElementById("mytext").innerHTML=xmlhttp.responseText;
+document.getElementById("jasonText").innerHTML=xmlhttp.responseText;
 
 var s1= xmlhttp.responseText;
 //console.log(ty(s1));
@@ -22,10 +24,12 @@ var obj = JSON.parse(s1);
 console.log(obj);
 
 var i=0;
-while(obj != undefined){
-  var urlimg=obj.deals[i].imageUrl;
-  var title = obj.deals[i].title;
-  displayHotel(urlimg,title);
+while(obj != undefined || obj != null){
+   var title = obj.deals[i].title;
+   var description = obj.deals[i].description;
+   var urlimg=obj.deals[i].imageUrl;
+ 
+  displayHotel(title,description,urlimg);
   i++;
 }
 
@@ -37,41 +41,42 @@ xmlhttp.send();
 
 }
 
-function displayHotel (urlImage,titleImage) {
-var display.getElementById('Hostels');
+function displayHotel (titleImage,description,urlImage) {
+var html = document.getElementById('Hostels');
 var imageTitle = titleImage;
+var info =description;
 var imageUrl = urlImage;
-display.innerHTML+=templateMaker(imageTitle,imageUrl);
+html.innerHTML += newHotel(imageTitle,info,imageUrl);
 }
 
-function templateMaker(imgTitle,imgUrl) {
-  var templateHtml = "<div class='hotels'><h3 class='hotel-title'>" + imgTitle + "</h3><img class='dealsImage' src=" + imgUrl +" alt=\"couldn't load the image\"></div>";
+function newHotel(imgTitle,information,imgUrl) {
+  var template = "<div class='deals'><h3 class='dealsTitle'>" + imgTitle + "</h3><p class='info'>" + information + "</p><img class='dealsImage' src=" + imgUrl +" alt=\"Image not Loaded\"></div>";
 
-return templateHtml;
+return template;
 }
+
 
 function calculate() {
     var e = document.getElementById("rssFeed");
     var val = e.options[e.selectedIndex].text;
     switch (val) {
         case "Mystique":
-            var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=vzc5d5hulx2l3uvdw3j0cil2"
+            var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=glbe3go0guvqy0eezblgboed"
             RSS(TestUrl);
-            //reqListener(response);
             break;
         case "Hotel":
-            var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=vzc5d5hulx2l3uvdw3j0cil2&$filter=Type eq 'hotel'"
+            var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=glbe3go0guvqy0eezblgboed&$filter=Type eq 'hotel'"
              RSS(TestUrl);
              
             break;
 
         case "Cars":
-           var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=vzc5d5hulx2l3uvdw3j0cil2&$filter=Type eq 'car'"
+           var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=glbe3go0guvqy0eezblgboed&$filter=Type eq 'car'"
              RSS(TestUrl);
             break;
 
         case "Activity":
-            var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=vzc5d5hulx2l3uvdw3j0cil2&$filter=Type eq 'activity'"
+            var TestUrl="http://dev-mystique.tavisca.com/api/deals/all?token=glbe3go0guvqy0eezblgboed&$filter=Type eq 'activity'"
              RSS(TestUrl);
             break;
 
@@ -79,3 +84,4 @@ function calculate() {
         }
 
 }
+clickObj.onclick=calculate;

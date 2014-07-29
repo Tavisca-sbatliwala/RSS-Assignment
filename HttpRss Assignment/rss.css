@@ -1,9 +1,14 @@
-.hotels .hotel-title{
+.deals .dealsTitle{
 height: 30px;
 width: 200px;
+font-color:#660066;
 }
 
-.hotels .dealsImage{
-	height: 500px;
-	width: 600px;
+.deals .dealsImage{
+	height: 300px;
+	width: 400px;
+}
+
+.deals .info{
+	font-size: 20px;
 }
