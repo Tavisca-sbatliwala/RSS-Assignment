@@ -1,3 +1,8 @@
+.deals{
+	border: solid;
+	border-color: #660033;
+
+}
 .deals .dealsTitle{
 height: 30px;
 width: 200px;
@@ -5,8 +10,12 @@ font-color:#660066;
 }
 
 .deals .dealsImage{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 	height: 300px;
 	width: 400px;
+
 }
 
 .deals .info{

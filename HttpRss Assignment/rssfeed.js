@@ -29,7 +29,7 @@ while(obj != undefined || obj != null){
    var description = obj.deals[i].description;
    var urlimg=obj.deals[i].imageUrl;
  
-  displayHotel(title,description,urlimg);
+  displayDeals(title,description,urlimg);
   i++;
 }
 
@@ -41,15 +41,15 @@ xmlhttp.send();
 
 }
 
-function displayHotel (titleImage,description,urlImage) {
-var html = document.getElementById('Hostels');
+function displayDeals (titleImage,description,urlImage) {
+var divId = document.getElementById('Hostels');
 var imageTitle = titleImage;
 var info =description;
 var imageUrl = urlImage;
-html.innerHTML += newHotel(imageTitle,info,imageUrl);
+divId.innerHTML += templateMaker(imageTitle,info,imageUrl);
 }
 
-function newHotel(imgTitle,information,imgUrl) {
+function templateMaker(imgTitle,information,imgUrl) {
   var template = "<div class='deals'><h3 class='dealsTitle'>" + imgTitle + "</h3><p class='info'>" + information + "</p><img class='dealsImage' src=" + imgUrl +" alt=\"Image not Loaded\"></div>";
 
 return template;
